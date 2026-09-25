@@ -1,0 +1,32 @@
+/* Contenant de la carte */
+.card {
+  background-color: var(--card-bg);      /* Couleur de fond sombre définie dans variables.css */
+  border: 1px solid var(--card-border);  /* Bordure très fine et discrète */
+  border-radius: var(--border-radius);   /* Coins arrondis (12px) */
+  padding: 1.5rem;                       /* Espace à l'intérieur de la carte */
+  display: flex;
+  flex-direction: column;                /* Aligne le contenu verticalement (titre en haut, contenu dessous) */
+  gap: 1rem;                             /* Espace automatique entre l'en-tête et le contenu */
+}
+
+/* Entete de la carte */
+.card-header {
+  display: flex;
+  justify-content: space-between;        /* Titre à gauche, info secondaire à droite */
+  align-items: center;                   /* Aligne verticalement au centre */
+}
+
+/* Titre de la carte */
+.card-title {
+  font-size: 0.85rem;                    /* Taille du texte légèrement réduite */
+  font-weight: 600;                      /* Texte en semi-gras */
+  text-transform: uppercase;             /* Force le texte en MAJUSCULES (ex: "MÉTÉO", "TÂCHES") */
+  letter-spacing: 0.05em;                /* Légère espacement entre les lettres pour plus de lisibilité */
+  color: var(--text-secondary);          /* Couleur grise discrète */
+}
+
+/* Sous-titre de la carte */
+.card-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}

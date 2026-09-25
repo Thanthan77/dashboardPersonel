@@ -1,0 +1,57 @@
+/* Variables CSS */
+:root {
+  /* Palette Thème Sombre */
+  --bg-color: #1a1a1c;          /* Fond principal de la page */
+  --card-bg: #27272a;           /* Fond sombre des cartes */
+  --card-border: #3f3f46;       /* Bordure neutre et discrète des cartes */
+  --inner-bg: #1f1f22;          /* Fond plus sombre pour les sous-éléments (ex: métriques) */
+  
+  /* Typographie & Couleurs de Texte */
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --text-primary: #ffffff;      /* Texte principal (blanc) */
+  --text-secondary: #a1a1aa;    /* Texte secondaire / sous-titres (gris clair) */
+  --text-muted: #71717a;        /* Textes très sombres ou désactivés */
+  
+  /* Couleurs d'Accentuation */
+  --accent-color: #6366f1;      /* Violet pour les accents (checkbox, décomptes) */
+  --accent-hover: #4f46e5;      /* Violet au survol */
+  
+  /* Structure & Formes */
+  --border-radius-card: 12px;   /* Arrondi principal des cartes */
+  --border-radius-sm: 8px;      /* Arrondi des sous-composants (boutons, badges) */
+  
+  /* Espacements */
+  --spacing-sm: 0.5rem;   /* 8px */
+  --spacing-md: 1rem;     /* 16px */
+  --spacing-lg: 1.5rem;   /* 24px */
+}
+
+/* Propriétés de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  min-height: 100vh;
+  padding: var(--spacing-lg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Liens et boutons par défaut */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
