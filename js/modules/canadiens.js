@@ -134,7 +134,7 @@ export async function initCanadiens() {
     const isHome = match.Domicile;
     const locationText = isHome ? "Centre Bell" : `Extérieur (${match.Adversaire})`;
 
-    // URLs des logos avec fallback SVG par défaut si indisponibles
+    // URLs des logos avec fallback SVG par défaut 
     const logoHomeUrl = match.LogoHome || "https://assets.nhle.com/logos/nhl/svg/MTL_light.svg";
     const logoAwayUrl = match.LogoAway || "https://assets.nhle.com/logos/nhl/svg/MTL_light.svg";
 
@@ -146,7 +146,7 @@ export async function initCanadiens() {
 
     const countdown = getCountdownText(match.StartTimeUTC);
 
-    // Injection du HTML avec les images <img src="..."> des logos
+    // Injection du HTML avec les images des logos
     canadiensCard.innerHTML = `
       <div class="card-header">
         <h2 class="card-title">CANADIENS DE MONTRÉAL</h2>
