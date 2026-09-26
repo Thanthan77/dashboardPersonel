@@ -1,0 +1,28 @@
+/* -- Grille du dashboard -- */
+
+.dashboard-container {
+  width: 100%;
+  max-width: 1600px; /* Augmenté pour occuper presque tout l'écran */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.card-full-width {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-full-width {
+    grid-column: span 1;
+  }
+}
