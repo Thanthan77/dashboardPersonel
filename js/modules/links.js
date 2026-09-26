@@ -6,11 +6,11 @@ export function initLinks() {
   const linksData = [
     { name: 'GitHub', url: 'https://github.com' },
     { name: 'Moodle', url: 'https://ena.etsmtl.ca/' },
-    { name: 'Outlook', url: 'https://outlook.office.com' },
+    { name: 'Outlook', url: 'https://outlook.office365.com/mail/' },
     { name: 'MonETS', url: 'https://portail.etsmtl.ca/' },
-    { name: 'LinkedIn', url: 'https://linkedin.com' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/feed/' },
     { name: 'YouTube', url: 'https://youtube.com' },
-    { name: 'Drive', url: 'https://drive.google.com' }
+    { name: 'Drive', url: 'https://drive.google.com/drive/home' }
   ];
 
   // Génération du HTML avec favicons dynamiques
