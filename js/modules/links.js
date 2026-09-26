@@ -10,7 +10,7 @@ export function initLinks() {
     { name: 'MonETS', url: 'https://portail.etsmtl.ca/' },
     { name: 'LinkedIn', url: 'https://linkedin.com' },
     { name: 'YouTube', url: 'https://youtube.com' },
-    { name: 'GoogleDrive', url: 'https://drive.google.com' }
+    { name: 'Drive', url: 'https://drive.google.com' }
   ];
 
   // Génération du HTML avec favicons dynamiques
