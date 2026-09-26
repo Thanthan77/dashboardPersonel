@@ -60,6 +60,8 @@ async function getMatchsCanadiens() {
       StartTimeUTC: startTimeUtc,
       Heure: heureLocale,
       Adversaire: isHome ? away : home,
+      LogoHome: match.homeTeam?.logo, // Logo de l'équipe à domicile
+      LogoAway: match.awayTeam?.logo, // Logo de l'équipe visiteuse
       Domicile: isHome,
     };
 
@@ -130,9 +132,11 @@ export async function initCanadiens() {
 
     const match = allFutureMatches[0];
     const isHome = match.Domicile;
-    const teamHome = isHome ? "MTL" : match.Adversaire;
-    const teamAway = isHome ? match.Adversaire : "MTL";
     const locationText = isHome ? "Centre Bell" : `Extérieur (${match.Adversaire})`;
+
+    // URLs des logos avec fallback SVG par défaut si indisponibles
+    const logoHomeUrl = match.LogoHome || "https://assets.nhle.com/logos/nhl/svg/MTL_light.svg";
+    const logoAwayUrl = match.LogoAway || "https://assets.nhle.com/logos/nhl/svg/MTL_light.svg";
 
     // Format de date : Vendredi, 19 h 00
     const matchDate = new Date(`${match.Date}T12:00:00`);
@@ -142,7 +146,7 @@ export async function initCanadiens() {
 
     const countdown = getCountdownText(match.StartTimeUTC);
 
-    // Rendu correspondant exactement à la structure de ton exemple
+    // Injection du HTML avec les images <img src="..."> des logos
     canadiensCard.innerHTML = `
       <div class="card-header">
         <h2 class="card-title">CANADIENS DE MONTRÉAL</h2>
@@ -150,13 +154,9 @@ export async function initCanadiens() {
       </div>
       <div class="card-content" style="text-align: center;">
         <div style="display: flex; justify-content: space-around; align-items: center; margin: 1rem 0;">
-          <div style="background: ${teamHome === "MTL" ? "#a23434" : "#2b4c7e"}; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff;">
-            ${teamHome}
-          </div>
+          <img src="${logoHomeUrl}" alt="Équipe Domicile" style="width: 60px; height: 60px; object-fit: contain;">
           <span style="color: var(--text-secondary);">VS</span>
-          <div style="background: ${teamAway === "MTL" ? "#a23434" : "#2b4c7e"}; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #fff;">
-            ${teamAway}
-          </div>
+          <img src="${logoAwayUrl}" alt="Équipe Visiteuse" style="width: 60px; height: 60px; object-fit: contain;">
         </div>
         <p style="font-size: 0.9rem;">${dateAndHour} — <strong>${locationText}</strong></p>
         <p style="color: var(--accent-color); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;">${countdown}</p>
