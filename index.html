@@ -5,21 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard Personnel</title>
   
-  <!-- 1. Style Global & Variables -->
   <link rel="stylesheet" href="css/general.css">
-  
-  <!-- 2. Layouts (Grille et Header) -->
   <link rel="stylesheet" href="css/layout/grid.css">
   <link rel="stylesheet" href="css/layout/header.css">
-  
-  <!-- 3. Composants -->
   <link rel="stylesheet" href="css/components/card.css">
 </head>
 <body>
 
   <div class="dashboard-container">
     
-    <!-- HEADER : Aligné sur toute la largeur (Titre à gauche, Heure à droite) -->
     <header class="main-header">
       <div class="header-left">
         <div class="header-badge"></div>
@@ -28,74 +22,23 @@
           <p>Bonjour Ethan 👋</p>
         </div>
       </div>
-
       <div class="header-right">
-        <div class="clock-display" id="clock">19:56:05</div>
-        <div class="date-display" id="date">Jeudi 24 Septembre 2026</div>
+        <div class="clock-display" id="clock">--:--:--</div>
+        <div class="date-display" id="date">Chargement...</div>
       </div>
     </header>
 
-    <!-- GRILLE PRINCIPALE DE 2 COLONNES -->
     <main class="dashboard-grid">
-      
-      <!-- 1. Météo -->
-      <section class="card">
-        <div class="card-header">
-          <h2 class="card-title">MÉTÉO</h2>
-          <span class="card-subtitle">Mis à jour 06:45</span>
-        </div>
-        <div class="card-content">
-          <p>Contenu Météo</p>
-        </div>
-      </section>
-
-      <!-- 2. Agenda du Jour -->
-      <section class="card">
-        <div class="card-header">
-          <h2 class="card-title">AGENDA DU JOUR</h2>
-          <span class="card-subtitle">Jeudi</span>
-        </div>
-        <div class="card-content">
-          <p>Contenu Agenda</p>
-        </div>
-      </section>
-
-      <!-- 3. Tâches -->
-      <section class="card">
-        <div class="card-header">
-          <h2 class="card-title">TÂCHES</h2>
-          <span class="card-subtitle">3 / 5 complétées</span>
-        </div>
-        <div class="card-content">
-          <p>Contenu Tâches</p>
-        </div>
-      </section>
-
-      <!-- 4. Canadiens de Montréal -->
-      <section class="card">
-        <div class="card-header">
-          <h2 class="card-title">CANADIENS DE MONTRÉAL</h2>
-          <span class="card-subtitle">LNH</span>
-        </div>
-        <div class="card-content">
-          <p>Contenu Canadiens</p>
-        </div>
-      </section>
-
-      <!-- 5. Liens Rapides (S'étend sur toute la largeur) -->
-      <section class="card card-full-width">
-        <div class="card-header">
-          <h2 class="card-title">LIENS RAPIDES</h2>
-          <span class="card-subtitle">7 raccourcis</span>
-        </div>
-        <div class="card-content">
-          <p>Contenu Liens Rapides</p>
-        </div>
-      </section>
-
+      <section class="card" id="weather-widget"></section>
+      <section class="card" id="agenda-widget"></section>
+      <section class="card" id="tasks-widget"></section>
+      <section class="card" id="canadiens-widget"></section>
+      <section class="card card-full-width" id="links-widget"></section>
     </main>
 
   </div>
 
+  <!-- Entrée JavaScript principal -->
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
