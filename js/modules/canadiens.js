@@ -154,9 +154,9 @@ export async function initCanadiens() {
       </div>
       <div class="card-content" style="text-align: center;">
         <div style="display: flex; justify-content: space-around; align-items: center; margin: 1rem 0;">
-          <img src="${logoHomeUrl}" alt="Équipe Domicile" style="width: 60px; height: 60px; object-fit: contain;">
+          <img src="${logoHomeUrl}" alt="Équipe Domicile" style="width: 80px; height: 80px; object-fit: contain;">
           <span style="color: var(--text-secondary);">VS</span>
-          <img src="${logoAwayUrl}" alt="Équipe Visiteuse" style="width: 60px; height: 60px; object-fit: contain;">
+          <img src="${logoAwayUrl}" alt="Équipe Visiteuse" style="width: 80px; height: 80px; object-fit: contain;">
         </div>
         <p style="font-size: 0.9rem;">${dateAndHour} — <strong>${locationText}</strong></p>
         <p style="color: var(--accent-color); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;">${countdown}</p>
