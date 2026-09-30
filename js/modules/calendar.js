@@ -29,15 +29,16 @@ function parseICalData(icsData) {
   const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
   const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59).getTime();
 
+  // Limite de recherche pour les événements futurs (7 jours)
+  const maxFutureDate = new Date();
+  maxFutureDate.setDate(now.getDate() + 7);
+
   const todayEvents = [];
   const futureEvents = [];
 
-  vevents.forEach(vevent => {
-    const event = new ICAL.Event(vevent);
-    const eventStart = event.startDate.toJSDate().getTime();
-    const startDate = event.startDate.toJSDate();
-
-    // 1. Filtrer les événements d'aujourd'hui
+  // Fonction interne pour traiter une instance d'événement
+  function processEventInstance(event, startDate, eventStart) {
+    // 1. Événements d'aujourd'hui
     if (eventStart >= startOfDay && eventStart <= endOfDay) {
       const timeStr = event.startDate.isDate
         ? 'Toute la journée'
@@ -50,7 +51,7 @@ function parseICalData(icsData) {
       });
     }
 
-    // 2. Filtrer les événements strictement futurs
+    // 2. Événements strictement futurs
     if (eventStart > now.getTime()) {
       const dateStr = startDate.toLocaleDateString('fr-CA', { month: 'short', day: 'numeric' });
       const timeStr = event.startDate.isDate
@@ -63,18 +64,38 @@ function parseICalData(icsData) {
         rawDate: startDate
       });
     }
+  }
+
+  vevents.forEach(vevent => {
+    const event = new ICAL.Event(vevent);
+
+    // Prise en charge des événements récurrents (cours, routines)
+    if (event.isRecurring()) {
+      const expand = new ICAL.RecurExpansion({
+        component: vevent,
+        dtstart: event.startDate
+      });
+
+      let next;
+      while ((next = expand.next()) && next.toJSDate() <= maxFutureDate) {
+        const startDate = next.toJSDate();
+        processEventInstance(event, startDate, startDate.getTime());
+      }
+    } else {
+      // Événement simple
+      const startDate = event.startDate.toJSDate();
+      processEventInstance(event, startDate, startDate.getTime());
+    }
   });
 
-  // Trier par ordre chronologique
+  // Tri par ordre chronologique
   todayEvents.sort((a, b) => a.rawDate - b.rawDate);
   futureEvents.sort((a, b) => a.rawDate - b.rawDate);
 
-  // S'il reste des événements aujourd'hui, on les retourne
   if (todayEvents.length > 0) {
     return { events: todayEvents, isFutureEvents: false };
   }
 
-  // Sinon, on retourne les 4 prochains événements futurs
   return { events: futureEvents.slice(0, 4), isFutureEvents: true };
 }
 
