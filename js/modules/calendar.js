@@ -38,7 +38,7 @@ function parseICalData(icsData) {
 
   // Fonction interne pour traiter une instance d'événement
   function processEventInstance(event, startDate, eventStart) {
-    // 1. Événements d'aujourd'hui
+    // Événements d'aujourd'hui
     if (eventStart >= startOfDay && eventStart <= endOfDay) {
       const timeStr = event.startDate.isDate
         ? 'Toute la journée'
@@ -51,7 +51,7 @@ function parseICalData(icsData) {
       });
     }
 
-    // 2. Événements strictement futurs
+    // Événements strictement futurs
     if (eventStart > now.getTime()) {
       const dateStr = startDate.toLocaleDateString('fr-CA', { month: 'short', day: 'numeric' });
       const timeStr = event.startDate.isDate
@@ -92,7 +92,10 @@ function parseICalData(icsData) {
   todayEvents.sort((a, b) => a.rawDate - b.rawDate);
   futureEvents.sort((a, b) => a.rawDate - b.rawDate);
 
-  if (todayEvents.length > 0) {
+  // Bascule sur les événements futurs si tous les événements d'aujourd'hui sont terminés
+  const remainingTodayEvents = todayEvents.filter(e => e.rawDate.getTime() > now.getTime());
+
+  if (remainingTodayEvents.length > 0) {
     return { events: todayEvents, isFutureEvents: false };
   }
 
@@ -131,7 +134,7 @@ function renderCalendar(container, events, isFutureEvents) {
     container.innerHTML = `
       <div class="card-header">
         <h2 class="card-title">AGENDA DU JOUR</h2>
-        <span class="card-subtitle">Evénements du jour</span>
+        <span class="card-subtitle">Événements du jour</span>
       </div>
       <div class="card-content" style="text-align: center; color: var(--text-secondary); padding: 1rem 0; font-size: 0.85rem;">
         Aucun événement à venir.
@@ -173,6 +176,7 @@ function renderCalendar(container, events, isFutureEvents) {
         <span>${events.length} aujourd'hui</span>
       `;
     } else {
+      headerSubtitle = 'Prochains événements';
       footerText = `
         <span>Tous les événements d'aujourd'hui sont terminés</span>
         <span>${events.length} aujourd'hui</span>
