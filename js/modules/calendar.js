@@ -51,7 +51,7 @@ function parseICalData(icsData) {
       });
     }
 
-    // Événements strictement futurs
+    // Événements strictly futurs
     if (eventStart > now.getTime()) {
       const dateStr = startDate.toLocaleDateString('fr-CA', { month: 'short', day: 'numeric' });
       const timeStr = event.startDate.isDate
@@ -126,10 +126,29 @@ function renderError(container) {
   `;
 }
 
-function renderCalendar(container, events, isFutureEvents) {
-  const daysFr = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
-  const todayName = daysFr[new Date().getDay()];
+// Fonction utilitaire pour calculer la durée restante exacte
+function formatTimeRemaining(targetDate) {
+  const now = new Date();
+  const diffMs = targetDate - now;
 
+  if (diffMs <= 0) return 'maintenant';
+
+  const diffMins = Math.floor(diffMs / 60000);
+  const hours = Math.floor(diffMins / 60);
+  const mins = diffMins % 60;
+  const days = Math.floor(hours / 24);
+  const remainingHours = hours % 24;
+
+  if (days > 0) {
+    return `${days}j ${remainingHours}h`;
+  }
+  if (hours > 0) {
+    return `${hours}h ${mins}m`;
+  }
+  return `${mins}m`;
+}
+
+function renderCalendar(container, events, isFutureEvents) {
   if (events.length === 0) {
     container.innerHTML = `
       <div class="card-header">
@@ -159,17 +178,16 @@ function renderCalendar(container, events, isFutureEvents) {
 
   if (isFutureEvents) {
     headerSubtitle = 'Prochains événements';
-    footerText = `<span>Prochain événement : <strong style="color: var(--accent-color);">${events[0].title}</strong></span>`;
+    const nextFutureEvent = events[0];
+    const timeRemainingStr = formatTimeRemaining(nextFutureEvent.rawDate);
+
+    footerText = `<span>Prochain : <strong style="color: var(--accent-color);">${nextFutureEvent.title}</strong> dans ${timeRemainingStr}</span>`;
   } else {
     const now = new Date();
     const nextEvent = events.find(e => e.rawDate > now);
 
     if (nextEvent) {
-      const diffMs = nextEvent.rawDate - now;
-      const diffMins = Math.floor(diffMs / 60000);
-      const hours = Math.floor(diffMins / 60);
-      const mins = diffMins % 60;
-      const timeRemainingStr = hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+      const timeRemainingStr = formatTimeRemaining(nextEvent.rawDate);
 
       footerText = `
         <span>Prochain : <strong style="color: var(--accent-color);">${nextEvent.title}</strong> dans ${timeRemainingStr}</span>
