@@ -131,7 +131,7 @@ function renderCalendar(container, events, isFutureEvents) {
     container.innerHTML = `
       <div class="card-header">
         <h2 class="card-title">AGENDA DU JOUR</h2>
-        <span class="card-subtitle">${todayName}</span>
+        <span class="card-subtitle">Evénements du jour</span>
       </div>
       <div class="card-content" style="text-align: center; color: var(--text-secondary); padding: 1rem 0; font-size: 0.85rem;">
         Aucun événement à venir.
@@ -152,10 +152,10 @@ function renderCalendar(container, events, isFutureEvents) {
 
   // Gestion du pied de carte et du titre selon la situation
   let footerText = '';
-  let headerSubtitle = todayName;
+  let headerSubtitle = 'Événements du jour';
 
   if (isFutureEvents) {
-    headerSubtitle = 'À venir';
+    headerSubtitle = 'Prochains événements';
     footerText = `<span>Prochain événement : <strong style="color: var(--accent-color);">${events[0].title}</strong></span>`;
   } else {
     const now = new Date();
