@@ -1,37 +1,175 @@
-export function initCalendar() {
+const WORKER_URL = 'https://calandar.ethanqc-chea.workers.dev'; 
+
+export async function initCalendar() {
   const agendaCard = document.getElementById('agenda-widget');
   if (!agendaCard) return;
 
-  // Données fictives basées sur la maquette
-  const events = [
-    { time: '09:00', title: 'LOG200 — Laboratoire', category: 'Cours', type: 'course' },
-    { time: '12:00', title: 'Lunch', category: 'Perso', type: 'perso' },
-    { time: '14:30', title: 'Réunion équipe — Projet intégrateur', category: 'Projet', type: 'project' },
-    { time: '19:00', title: 'Volleyball', category: 'Sport', type: 'sport' }
-  ];
+  renderLoading(agendaCard);
 
+  try {
+    const response = await fetch(WORKER_URL);
+    if (!response.ok) throw new Error('Erreur réseau');
+
+    const icsData = await response.text();
+    const { events, isFutureEvents } = parseICalData(icsData);
+
+    renderCalendar(agendaCard, events, isFutureEvents);
+  } catch (error) {
+    console.error('Erreur Agenda:', error);
+    renderError(agendaCard);
+  }
+}
+
+function parseICalData(icsData) {
+  const jcalData = ICAL.parse(icsData);
+  const comp = new ICAL.Component(jcalData);
+  const vevents = comp.getAllSubcomponents('vevent');
+
+  const now = new Date();
+  const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59).getTime();
+
+  const todayEvents = [];
+  const futureEvents = [];
+
+  vevents.forEach(vevent => {
+    const event = new ICAL.Event(vevent);
+    const eventStart = event.startDate.toJSDate().getTime();
+    const startDate = event.startDate.toJSDate();
+
+    // 1. Filtrer les événements d'aujourd'hui
+    if (eventStart >= startOfDay && eventStart <= endOfDay) {
+      const timeStr = event.startDate.isDate
+        ? 'Toute la journée'
+        : startDate.toLocaleTimeString('fr-CA', { hour: '2-digit', minute: '2-digit' });
+
+      todayEvents.push({
+        time: timeStr,
+        title: event.summary || 'Sans titre',
+        rawDate: startDate
+      });
+    }
+
+    // 2. Filtrer les événements strictement futurs
+    if (eventStart > now.getTime()) {
+      const dateStr = startDate.toLocaleDateString('fr-CA', { month: 'short', day: 'numeric' });
+      const timeStr = event.startDate.isDate
+        ? 'Toute la journée'
+        : startDate.toLocaleTimeString('fr-CA', { hour: '2-digit', minute: '2-digit' });
+
+      futureEvents.push({
+        time: `${dateStr} ${timeStr}`,
+        title: event.summary || 'Sans titre',
+        rawDate: startDate
+      });
+    }
+  });
+
+  // Trier par ordre chronologique
+  todayEvents.sort((a, b) => a.rawDate - b.rawDate);
+  futureEvents.sort((a, b) => a.rawDate - b.rawDate);
+
+  // S'il reste des événements aujourd'hui, on les retourne
+  if (todayEvents.length > 0) {
+    return { events: todayEvents, isFutureEvents: false };
+  }
+
+  // Sinon, on retourne les 4 prochains événements futurs
+  return { events: futureEvents.slice(0, 4), isFutureEvents: true };
+}
+
+function renderLoading(container) {
+  container.innerHTML = `
+    <div class="card-header">
+      <h2 class="card-title">AGENDA DU JOUR</h2>
+      <span class="card-subtitle">Chargement...</span>
+    </div>
+    <div class="card-content" style="text-align: center; color: var(--text-secondary); padding: 1rem 0; font-size: 0.85rem;">
+      Récupération des événements...
+    </div>
+  `;
+}
+
+function renderError(container) {
+  container.innerHTML = `
+    <div class="card-header">
+      <h2 class="card-title">AGENDA DU JOUR</h2>
+      <span class="card-subtitle">Erreur</span>
+    </div>
+    <div class="card-content" style="text-align: center; color: #ef4444; padding: 1rem 0; font-size: 0.85rem;">
+      Impossible de charger l'agenda.
+    </div>
+  `;
+}
+
+function renderCalendar(container, events, isFutureEvents) {
+  const daysFr = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  const todayName = daysFr[new Date().getDay()];
+
+  if (events.length === 0) {
+    container.innerHTML = `
+      <div class="card-header">
+        <h2 class="card-title">AGENDA DU JOUR</h2>
+        <span class="card-subtitle">${todayName}</span>
+      </div>
+      <div class="card-content" style="text-align: center; color: var(--text-secondary); padding: 1rem 0; font-size: 0.85rem;">
+        Aucun événement à venir.
+      </div>
+    `;
+    return;
+  }
+
+  // Rendu de la liste
   const eventsHtml = events.map(event => `
     <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.8rem; background: var(--bg-color); border-radius: var(--border-radius-sm); margin-bottom: 0.5rem;">
       <div style="display: flex; align-items: center; gap: 0.8rem;">
         <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent-color); background: rgba(99, 102, 241, 0.1); padding: 0.2rem 0.5rem; border-radius: 4px;">${event.time}</span>
         <span style="font-size: 0.9rem; color: var(--text-primary);">${event.title}</span>
       </div>
-      <span style="font-size: 0.75rem; color: var(--text-secondary); border: 1px solid var(--card-border); padding: 0.15rem 0.5rem; border-radius: 12px;">${event.category}</span>
     </div>
   `).join('');
 
-  agendaCard.innerHTML = `
+  // Gestion du pied de carte et du titre selon la situation
+  let footerText = '';
+  let headerSubtitle = todayName;
+
+  if (isFutureEvents) {
+    headerSubtitle = 'À venir';
+    footerText = `<span>Prochain événement : <strong style="color: var(--accent-color);">${events[0].title}</strong></span>`;
+  } else {
+    const now = new Date();
+    const nextEvent = events.find(e => e.rawDate > now);
+
+    if (nextEvent) {
+      const diffMs = nextEvent.rawDate - now;
+      const diffMins = Math.floor(diffMs / 60000);
+      const hours = Math.floor(diffMins / 60);
+      const mins = diffMins % 60;
+      const timeRemainingStr = hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+
+      footerText = `
+        <span>Prochain : <strong style="color: var(--accent-color);">${nextEvent.title}</strong> dans ${timeRemainingStr}</span>
+        <span>${events.length} aujourd'hui</span>
+      `;
+    } else {
+      footerText = `
+        <span>Tous les événements d'aujourd'hui sont terminés</span>
+        <span>${events.length} aujourd'hui</span>
+      `;
+    }
+  }
+
+  container.innerHTML = `
     <div class="card-header">
-      <h2 class="card-title">AGENDA DU JOUR</h2>
-      <span class="card-subtitle">Vendredi</span>
+      <h2 class="card-title">AGENDA</h2>
+      <span class="card-subtitle">${headerSubtitle}</span>
     </div>
     <div class="card-content">
       <div style="display: flex; flex-direction: column;">
         ${eventsHtml}
       </div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-secondary);">
-        <span>Prochain : <strong style="color: var(--accent-color);">LOG200</strong> dans 1h 20</span>
-        <span>4 événements aujourd'hui</span>
+        ${footerText}
       </div>
     </div>
   `;
