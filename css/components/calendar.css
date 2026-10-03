@@ -1,0 +1,108 @@
+/* Styles pour la section Agenda */
+
+#agenda-widget {
+  display: flex;
+  flex-direction: column;
+}
+
+/* En-tête de carte */
+#agenda-widget .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+#agenda-widget .card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+#agenda-widget .card-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Contenu principal */
+#agenda-widget .card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Messages d'état (Chargement, Erreur, Liste vide) */
+#agenda-widget .agenda-status-message {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+#agenda-widget .agenda-status-message.error {
+  color: #ef4444;
+}
+
+/* Conteneur de la liste */
+#agenda-widget .agenda-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Ligne d'événement */
+#agenda-widget .agenda-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.8rem;
+  background: var(--bg-color);
+  border-radius: var(--border-radius-sm, 6px);
+  transition: background 0.2s ease;
+}
+
+#agenda-widget .agenda-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+#agenda-widget .agenda-item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  overflow: hidden;
+}
+
+/* Badge de l'heure / date */
+#agenda-widget .agenda-time-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Titre de l'événement */
+#agenda-widget .agenda-event-title {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Pied de carte */
+#agenda-widget .agenda-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+#agenda-widget .agenda-footer strong {
+  color: var(--accent-color);
+}
