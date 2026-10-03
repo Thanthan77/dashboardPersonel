@@ -1,0 +1,59 @@
+/* Styles pour la section météo */
+
+#weather-widget {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Messages d'état (Chargement & Erreur) */
+#weather-widget .weather-status-message {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 1.5rem 0;
+}
+
+/* En-tête météo (Température principale & Ville) */
+#weather-widget .weather-main-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#weather-widget .weather-temp-display {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+#weather-widget .weather-unit {
+  font-size: 1.5rem;
+}
+
+#weather-widget .weather-location-info {
+  text-align: right;
+}
+
+#weather-widget .weather-city {
+  display: block;
+  font-size: 1.1rem;
+}
+
+#weather-widget .weather-condition {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Grille de métriques (Pluie, Vent, Ressenti) */
+#weather-widget .weather-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  background: var(--bg-color);
+  padding: 0.75rem;
+  border-radius: var(--border-radius-sm);
+  text-align: center;
+}
+
+#weather-widget .weather-metrics-grid small {
+  color: var(--text-secondary);
+}
