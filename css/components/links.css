@@ -1,0 +1,162 @@
+/* Styles pour la section des liens */
+
+#links-widget {
+  display: flex;
+  flex-direction: column;
+}
+
+#links-widget .card-content {
+  padding: 0;
+}
+
+/* Grille des liens */
+#links-widget .links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0;
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+}
+
+/* Item individuel */
+#links-widget .link-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.45rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s ease;
+}
+
+#links-widget .link-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Lien principal */
+#links-widget .link-anchor {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 0;
+}
+
+/* Conteneur de la favicon */
+#links-widget .favicon-wrapper {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#links-widget .favicon-img {
+  width: 14px;
+  height: 14px;
+}
+
+/* Libellé du lien */
+#links-widget .link-title {
+  font-weight: 500;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Section d'actions (Suppression + Flèche) */
+#links-widget .link-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: 0.25rem;
+  flex-shrink: 0;
+}
+
+#links-widget .link-delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 0;
+  opacity: 0.4;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+#links-widget .link-delete-btn:hover {
+  color: #ef4444;
+  opacity: 1;
+}
+
+#links-widget .link-arrow {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+/* Bouton pour déclencher l'ajout */
+#links-widget .add-link-trigger-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  color: var(--text-secondary);
+  padding: 0.45rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#links-widget .add-link-trigger-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+/* Formulaire d'ajout */
+#links-widget .add-link-form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#links-widget .add-link-form input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  outline: none;
+  flex: 1;
+}
+
+#links-widget .btn-submit-link {
+  background: #818cf8;
+  color: #ffffff;
+  border: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+#links-widget .btn-cancel-link {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
