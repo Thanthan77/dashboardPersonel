@@ -1,0 +1,83 @@
+/* Style pour la section des Canadiens */
+
+#canadiens-widget {
+  display: flex;
+  flex-direction: column;
+}
+
+/* En-tête de carte */
+#canadiens-widget .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+#canadiens-widget .card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+#canadiens-widget .card-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Contenu principal */
+#canadiens-widget .card-content {
+  text-align: center;
+}
+
+/* Message d'état (Chargement, Aucun match, Erreur) */
+#canadiens-widget .canadiens-status-message {
+  text-align: center;
+  padding: 1.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* Affichage du match VS et des logos */
+#canadiens-widget .match-versus-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+#canadiens-widget .team-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+#canadiens-widget .team-logo:hover {
+  transform: scale(1.05);
+}
+
+#canadiens-widget .versus-divider {
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Détails du match (Date, Heure, Lieu) */
+#canadiens-widget .match-details {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+#canadiens-widget .match-details strong {
+  color: var(--text-primary);
+}
+
+/* Décompte du temps restant */
+#canadiens-widget .match-countdown {
+  color: var(--accent-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}

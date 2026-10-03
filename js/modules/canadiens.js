@@ -60,8 +60,8 @@ async function getMatchsCanadiens() {
       StartTimeUTC: startTimeUtc,
       Heure: heureLocale,
       Adversaire: isHome ? away : home,
-      LogoHome: match.homeTeam?.logo, // Logo de l'équipe à domicile
-      LogoAway: match.awayTeam?.logo, // Logo de l'équipe visiteuse
+      LogoHome: match.homeTeam?.logo,
+      LogoAway: match.awayTeam?.logo,
       Domicile: isHome,
     };
 
@@ -103,15 +103,7 @@ export async function initCanadiens() {
   if (!canadiensCard) return;
 
   // État de chargement initial
-  canadiensCard.innerHTML = `
-    <div class="card-header">
-      <h2 class="card-title">CANADIENS DE MONTRÉAL</h2>
-      <span class="card-subtitle">LNH</span>
-    </div>
-    <div class="card-content" style="text-align: center; padding: 1.5rem 0; color: var(--text-secondary);">
-      Chargement du prochain match...
-    </div>
-  `;
+  renderLoading(canadiensCard);
 
   try {
     const data = await getMatchsCanadiens();
@@ -134,11 +126,9 @@ export async function initCanadiens() {
     const isHome = match.Domicile;
     const locationText = isHome ? "Centre Bell" : `Extérieur (${match.Adversaire})`;
 
-    // URLs des logos avec fallback SVG par défaut 
     const logoHomeUrl = match.LogoHome || "https://assets.nhle.com/logos/nhl/svg/MTL_light.svg";
     const logoAwayUrl = match.LogoAway || "https://assets.nhle.com/logos/nhl/svg/MTL_light.svg";
 
-    // Format de date : Vendredi, 19 h 00
     const matchDate = new Date(`${match.Date}T12:00:00`);
     const dayName = matchDate.toLocaleDateString("fr-CA", { weekday: "long" });
     const capitalizedDay = dayName.charAt(0).toUpperCase() + dayName.slice(1);
@@ -146,20 +136,20 @@ export async function initCanadiens() {
 
     const countdown = getCountdownText(match.StartTimeUTC);
 
-    // Injection du HTML avec les images des logos
+    // Rendu HTML sans styles inlinés
     canadiensCard.innerHTML = `
       <div class="card-header">
         <h2 class="card-title">CANADIENS DE MONTRÉAL</h2>
         <span class="card-subtitle">LNH</span>
       </div>
-      <div class="card-content" style="text-align: center;">
-        <div style="display: flex; justify-content: space-around; align-items: center; margin: 1rem 0;">
-          <img src="${logoHomeUrl}" alt="Équipe Domicile" style="width: 80px; height: 80px; object-fit: contain;">
-          <span style="color: var(--text-secondary);">VS</span>
-          <img src="${logoAwayUrl}" alt="Équipe Visiteuse" style="width: 80px; height: 80px; object-fit: contain;">
+      <div class="card-content">
+        <div class="match-versus-container">
+          <img class="team-logo" src="${logoHomeUrl}" alt="Équipe Domicile">
+          <span class="versus-divider">VS</span>
+          <img class="team-logo" src="${logoAwayUrl}" alt="Équipe Visiteuse">
         </div>
-        <p style="font-size: 0.9rem;">${dateAndHour} — <strong>${locationText}</strong></p>
-        <p style="color: var(--accent-color); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;">${countdown}</p>
+        <p class="match-details">${dateAndHour} — <strong>${locationText}</strong></p>
+        <p class="match-countdown">${countdown}</p>
       </div>
     `;
 
@@ -169,14 +159,26 @@ export async function initCanadiens() {
   }
 }
 
+function renderLoading(container) {
+  container.innerHTML = `
+    <div class="card-header">
+      <h2 class="card-title">CANADIENS DE MONTRÉAL</h2>
+      <span class="card-subtitle">LNH</span>
+    </div>
+    <div class="card-content">
+      <div class="canadiens-status-message">Chargement du prochain match...</div>
+    </div>
+  `;
+}
+
 function renderNoMatch(container) {
   container.innerHTML = `
     <div class="card-header">
       <h2 class="card-title">CANADIENS DE MONTRÉAL</h2>
       <span class="card-subtitle">LNH</span>
     </div>
-    <div class="card-content" style="text-align: center; padding: 1rem 0; color: var(--text-secondary);">
-      Aucun match futur prévu.
+    <div class="card-content">
+      <div class="canadiens-status-message">Aucun match futur prévu.</div>
     </div>
   `;
 }
