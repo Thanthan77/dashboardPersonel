@@ -80,8 +80,8 @@ DashboardPerso/
 
 | Type               | Lien                                                                 |
 |--------------------|----------------------------------------------------------------------|
-| **Site déployé**   | [https://thanthan77.github.io/Dashboard_Canadiens/](https://thanthan77.github.io/dashboardPersonel/)           |
-| **Repository GitHub** | [https://github.com/Thanthan77/Dashboard_Canadiens](https://github.com/Thanthan77/dashboardPersonel) |
+| **Site déployé**   | [https://thanthan77.github.io/dashboardPersonel/](https://thanthan77.github.io/dashboardPersonel/)           |
+| **Repository GitHub** | [https://github.com/Thanthan77/dashboardPersonel](https://github.com/Thanthan77/dashboardPersonel) |
 
 
 
