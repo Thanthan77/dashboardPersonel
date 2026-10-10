@@ -64,7 +64,7 @@ function renderTasksWidget(tasksCard) {
           draggable="true"
           data-id="${task.id}"
           data-index="${index}"
-          title="Glisser: réordonner | Clic: cocher | Double-clic: modifier | Clic droit: supprimer"
+          title="Glisser: réordonner | Clic: cocher | Clic droit: modifier"
         >
           <div class="task-left">
             <span class="task-handle">⋮⋮</span>
