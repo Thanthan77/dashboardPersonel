@@ -74,7 +74,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  max-height: 120px;
+  min-height: 0;
+  max-height: 110px;
   overflow-y: auto;   /* Active le défilement interne pour toute la liste */
   flex-grow: 1;       /* Occupe tout l'espace vertical restant */
   padding-right: 0.2rem;
