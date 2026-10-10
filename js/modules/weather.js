@@ -15,7 +15,7 @@ export async function initWeather() {
   `;
 
   try {
-    const url = "https://api.open-meteo.com/v1/forecast?latitude=45.49902&longitude=-73.59793&current=temperature_2m,apparent_temperature,weather_code,relative_humidity_2m,wind_speed_10m&daily=precipitation_probability_max&wind_speed_unit=kmh&timezone=America%2FToronto";
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=45.49902&longitude=-73.59793&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&hourly=precipitation_probability&daily=precipitation_probability_max&wind_speed_unit=kmh&timezone=America%2FToronto";
 
     const response = await fetch(url);
     const data = await response.json();
@@ -40,6 +40,30 @@ export async function initWeather() {
       timeZone: 'America/Montreal' 
     });
 
+
+    const currentHour = new Date().getHours();
+    const nextHoursProbability = [];
+
+    if (data.hourly?.precipitation_probability && data.hourly?.time) {
+      for (let i = 0; i < 7; i++) {
+        const hourIndex = currentHour + i;
+        if (data.hourly.time[hourIndex]) {
+          const timeStr = new Date(data.hourly.time[hourIndex]).toLocaleTimeString('fr-CA', { hour: '2-digit' });
+          const prob = data.hourly.precipitation_probability[hourIndex];
+          nextHoursProbability.push({ time: timeStr, prob });
+        }
+      }
+    }
+
+    const hourlyHtml = nextHoursProbability.map(item => `
+      <div class="hourly-item">
+        <span class="hourly-time">${item.time}</span>
+        <span class="hourly-rain-icon">${Icons.rain}</span>
+        <span class="hourly-prob ${item.prob >= 50 ? 'high-rain' : ''}">${item.prob}%</span>
+      </div>
+    `).join('');
+
+
     // Rendu HTML propre
     weatherCard.innerHTML = `
       <div class="card-header">
@@ -61,6 +85,14 @@ export async function initWeather() {
           <div>${Icons.wind} <strong>${windSpeed} km/h</strong> <br><small>Vent</small></div>
           <div>${Icons.thermometer} <strong>${feelsLike}°C</strong> <br><small>Ressenti</small></div>
         </div>
+        ${nextHoursProbability.length > 0 ? `
+          <div class="weather-hourly-rain">
+            <div class="weather-hourly-title">Pluie heure par heure</div>
+            <div class="weather-hourly-grid">
+              ${hourlyHtml}
+            </div>
+          </div>
+        ` : ''}
       </div>
     `;
 

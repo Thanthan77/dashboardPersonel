@@ -57,3 +57,63 @@
 #weather-widget .weather-metrics-grid small {
   color: var(--text-secondary);
 }
+
+/* Section globale de la timeline de pluie */
+#weather-widget .weather-hourly-rain {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--card-border);
+}
+
+#weather-widget .weather-hourly-title {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Grille flexible pour répartir les 7 heures */
+#weather-widget .weather-hourly-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.3rem;
+}
+
+#weather-widget .hourly-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--inner-bg);
+  padding: 0.4rem 0.2rem;
+  border-radius: var(--border-radius-sm, 6px);
+  flex: 1;
+}
+
+#weather-widget .hourly-time {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+#weather-widget .hourly-rain-icon {
+  margin: 0.2rem 0;
+}
+
+/* Réduction de la taille de l'icône SVG dans la grille horaire */
+#weather-widget .hourly-rain-icon .widget-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+  stroke: var(--text-secondary);
+}
+
+#weather-widget .hourly-prob {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Met en valeur en violet (#6366f1) si la probabilité de pluie dépasse 50% */
+#weather-widget .hourly-prob.high-rain {
+  color: var(--accent-color);
+}
