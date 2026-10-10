@@ -152,9 +152,11 @@ function attachEvents(tasksCard) {
       initTasks();
     });
 
-    // Double clic : Editer
-    li.addEventListener('dblclick', (e) => {
+    // Clic droit : Modifier la tâche
+    li.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
       e.stopPropagation();
+      
       const tasks = getTasks();
       const task = tasks.find((t) => t.id === id);
       if (!task) return;
@@ -165,13 +167,6 @@ function attachEvents(tasksCard) {
         saveTasks(tasks);
         initTasks();
       }
-    });
-
-    // Clic droit : Supprimer
-    li.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      deleteTask(id);
     });
 
     // Bouton de suppression 
