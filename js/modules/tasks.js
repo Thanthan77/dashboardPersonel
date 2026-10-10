@@ -1,3 +1,4 @@
+import { Icons } from "../../assets/icons/icon.js";
 const TASKS_STORAGE_KEY = "dashboard_tasks";
 const LAST_CLEANUP_KEY = "dashboard_tasks_last_cleanup";
 
@@ -75,7 +76,7 @@ function renderTasksWidget(tasksCard) {
             >
             <span class="task-text">${task.text}</span>
           </div>
-          <button class="task-delete-btn" title="Supprimer la tâche">✕</button>
+          <button class="task-delete-btn" title="Supprimer la tâche">${Icons.trash}</button>
         </li>
       `).join("");
 
@@ -101,7 +102,7 @@ function renderTasksWidget(tasksCard) {
           placeholder="Ajouter une tâche..." 
           autocomplete="off"
         />
-        <button type="submit" class="task-add-btn">+</button>
+        <button type="submit" class="task-add-btn">${Icons.plus}</button>
       </form>
 
       <ul class="tasks-list">${tasksListHtml}</ul>
@@ -173,7 +174,7 @@ function attachEvents(tasksCard) {
       deleteTask(id);
     });
 
-    // Bouton de suppression ✕
+    // Bouton de suppression 
     const deleteBtn = li.querySelector('.task-delete-btn');
     if (deleteBtn) {
       deleteBtn.addEventListener('click', (e) => {
