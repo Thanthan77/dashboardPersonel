@@ -1,3 +1,4 @@
+import { Icons } from "../../assets/icons/icon.js";
 export async function initWeather() {
   const weatherCard = document.getElementById('weather-widget');
   if (!weatherCard) return;
@@ -56,9 +57,9 @@ export async function initWeather() {
           </div>
         </div>
         <div class="weather-metrics-grid">
-          <div>💧 <strong>${rainProb}%</strong> <br><small>Pluie</small></div>
-          <div>💨 <strong>${windSpeed} km/h</strong> <br><small>Vent</small></div>
-          <div>🌡️ <strong>${feelsLike}°C</strong> <br><small>Ressenti</small></div>
+          <div>${Icons.rain} <strong>${rainProb}%</strong> <br><small>Pluie</small></div>
+          <div>${Icons.wind} <strong>${windSpeed} km/h</strong> <br><small>Vent</small></div>
+          <div>${Icons.thermometer} <strong>${feelsLike}°C</strong> <br><small>Ressenti</small></div>
         </div>
       </div>
     `;
