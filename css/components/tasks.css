@@ -3,8 +3,8 @@
 #tasks-widget {
   display: flex;
   flex-direction: column;
-  max-height: 240px;
-  overflow: hidden;
+  max-height: 250px; /* Bloque la hauteur totale de la carte */
+  overflow: hidden;  /* Empêche le contenu de déborder de la carte */
 }
 
 #tasks-widget .card-header {
@@ -12,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
+  flex-shrink: 0; /* Empêche l'en-tête de se réduire */
 }
 
 /* Bouton Purger */
@@ -35,7 +36,7 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 0.6rem;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Empêche le formulaire de se réduire */
 }
 
 #tasks-widget .task-input {
@@ -64,7 +65,7 @@
   font-size: 0.85rem;
 }
 
-/* Liste des tâches : Hauteur maximale bloquée à l'équivalent de ~3 tâches, scroll propre si dépassement */
+/* Liste des tâches : Devient scrollable globalement à l'intérieur de la carte */
 #tasks-widget .tasks-list {
   padding: 0;
   margin: 0;
@@ -72,10 +73,11 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  max-height: 140px;  /* Bloque la hauteur pour ne pas étirer la carte */
-  overflow-y: auto;   /* Active le scroll interne si > 3 tâches */
+  overflow-y: auto;   /* Active le défilement interne pour toute la liste */
+  flex-grow: 1;       /* Occupe tout l'espace vertical restant */
   padding-right: 0.2rem;
   scrollbar-width: thin;
+  scrollbar-color: var(--text-secondary) var(--bg-color);
 }
 
 #tasks-widget .tasks-empty {
