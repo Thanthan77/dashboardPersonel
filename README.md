@@ -52,6 +52,9 @@ Le projet inclut :
 DashboardPerso/
 │
 ├── index.html
+├── assets/
+│   ├── icon/
+│   └──  icons.js
 ├── css/
 │   ├── general.css
 │   ├── layout/
