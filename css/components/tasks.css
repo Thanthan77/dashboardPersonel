@@ -51,7 +51,7 @@
   justify-content: center; /* Centre horizontalement */
   gap: 0.4rem;             /* Crée un espace propre entre l'icône et le texte */
   padding: 0.4rem 0.75rem;
-  background: var(--accent-color);
+  background: var(--bg-color);
   color: #ffffff;
   border: none;
   border-radius: var(--border-radius-sm, 4px);
