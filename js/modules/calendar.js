@@ -36,6 +36,8 @@ function parseICalData(icsData) {
   const futureEvents = [];
 
   function processEventInstance(event, startDate, eventStart) {
+    const rawComponent = event.component;
+    const color = rawComponent.getFirstPropertyValue('color') || rawComponent.getFirstPropertyValue('categories') || 'Défaut';
     if (eventStart >= startOfDay && eventStart <= endOfDay) {
       const timeStr = event.startDate.isDate
         ? 'Toute la journée'
