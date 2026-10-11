@@ -66,6 +66,7 @@ function parseICalData(icsData) {
         time: timeStr,
         title: event.summary || 'Sans titre',
         rawDate: startDate,
+        categoryName: category.name,
         color:category.color
       });
     }
@@ -80,6 +81,7 @@ function parseICalData(icsData) {
         time: `${dateStr} ${timeStr}`,
         title: event.summary || 'Sans titre',
         rawDate: startDate,
+        categoryName: category.name,
         color:category.color
       });
     }
@@ -183,9 +185,7 @@ function renderCalendar(container, events, isFutureEvents) {
         <span class="agenda-time-badge">${event.time}</span>
         <span class="agenda-event-title">${event.title}</span>
       </div>
-      <span class="agenda-category-badge">
-        ${event.categoryName}
-      </span>
+      <span class="agenda-category-badge">${event.categoryName}</span>
     </div>
   `).join('');
 
