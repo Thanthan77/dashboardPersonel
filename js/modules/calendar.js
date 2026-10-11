@@ -44,7 +44,8 @@ function parseICalData(icsData) {
       todayEvents.push({
         time: timeStr,
         title: event.summary || 'Sans titre',
-        rawDate: startDate
+        rawDate: startDate,
+        color:color
       });
     }
 
@@ -57,7 +58,8 @@ function parseICalData(icsData) {
       futureEvents.push({
         time: `${dateStr} ${timeStr}`,
         title: event.summary || 'Sans titre',
-        rawDate: startDate
+        rawDate: startDate,
+        color:color
       });
     }
   }
@@ -87,11 +89,16 @@ function parseICalData(icsData) {
 
   const remainingTodayEvents = todayEvents.filter(e => e.rawDate.getTime() > now.getTime());
 
+  let result;
   if (remainingTodayEvents.length > 0) {
-    return { events: todayEvents, isFutureEvents: false };
+    result = { events: todayEvents, isFutureEvents: false };
+  }
+  else{
+    result = { events: futureEvents.slice(0, 4), isFutureEvents: true };
   }
 
-  return { events: futureEvents.slice(0, 4), isFutureEvents: true };
+  console.log("Événements structurés (avec couleurs) :", result.events); /* Affichage des événements avec les couleurs */
+  return result;
 }
 
 function renderLoading(container) {
