@@ -120,7 +120,7 @@ function parseICalData(icsData) {
     result = { events: futureEvents.slice(0, 4), isFutureEvents: true };
   }
 
-  console.log("Événements structurés (avec couleurs) :", result.events); /* Affichage des événements avec les couleurs */
+ /* console.log("Événements structurés (avec couleurs) :", result.events);  ligne pour débogage,afficher les attributs des événements */
   return result;
 }
 
