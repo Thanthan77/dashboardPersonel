@@ -20,6 +20,25 @@ export async function initCalendar() {
   }
 }
 
+function getEventCategory(title) {
+  // Regex pour détecter les sigles universitaires (ex: LOG121, INF101, MAT350)
+  const courseCodeRegex = /^[A-Z]{3}\d{3}/i;
+  
+  const t = title.toLowerCase();
+
+  if (courseCodeRegex.test(title.trim())) {
+    return { name: 'Cours', color: '#6366f1' }; // Violet (Indigo)
+  } else if (t.includes('exam') || t.includes('intra') || t.includes('final') || t.includes('quiz') || t.includes('test')) {
+    return { name: 'Examen', color: '#ef4444' }; // Rouge (Alerte)
+  } else if (t.includes('lab') || t.includes('tp') || t.includes('projet') || t.includes('atelier')) {
+    return { name: 'Lab / TP', color: '#06b6d4' }; // Cyan
+  } else if (t.includes('volleyball') || t.includes('sport') || t.includes('gym') || t.includes('entrainement') || t.includes('pratique') ) {
+    return { name: 'Sport', color: '#10b981' }; // Vert
+  } else {
+    return { name: 'Perso', color: '#f59e0b' }; // Orange par défaut
+  }
+}
+
 function parseICalData(icsData) {
   const jcalData = ICAL.parse(icsData);
   const comp = new ICAL.Component(jcalData);
@@ -36,8 +55,8 @@ function parseICalData(icsData) {
   const futureEvents = [];
 
   function processEventInstance(event, startDate, eventStart) {
-    const rawComponent = event.component;
-    const color = rawComponent.getFirstPropertyValue('color') || rawComponent.getFirstPropertyValue('categories') || 'Défaut';
+    const title = event.summary || 'Sans titre';
+    const category = getEventCategory(title);
     if (eventStart >= startOfDay && eventStart <= endOfDay) {
       const timeStr = event.startDate.isDate
         ? 'Toute la journée'
@@ -47,7 +66,7 @@ function parseICalData(icsData) {
         time: timeStr,
         title: event.summary || 'Sans titre',
         rawDate: startDate,
-        color:color
+        color:category.color
       });
     }
 
@@ -61,7 +80,7 @@ function parseICalData(icsData) {
         time: `${dateStr} ${timeStr}`,
         title: event.summary || 'Sans titre',
         rawDate: startDate,
-        color:color
+        color:category.color
       });
     }
   }
@@ -164,6 +183,9 @@ function renderCalendar(container, events, isFutureEvents) {
         <span class="agenda-time-badge">${event.time}</span>
         <span class="agenda-event-title">${event.title}</span>
       </div>
+      <span class="agenda-category-badge">
+        ${event.categoryName}
+      </span>
     </div>
   `).join('');
 

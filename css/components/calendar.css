@@ -106,3 +106,16 @@
 #agenda-widget .agenda-footer strong {
   color: var(--accent-color);
 }
+
+/* Badge de catégorie */
+#agenda-widget .agenda-category-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid var(--accent-color); 
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
