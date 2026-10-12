@@ -133,7 +133,7 @@
 }
 
 /* Css pour les écrans mobiles plus petits */
-@media (max-width: 768px) {
+@media (max-width: 650px) {
   /* Réduit l'espace sous l'en-tête de la carte météo */
   #weather-widget .card-header {
     margin-bottom: 0.15rem !important;
@@ -180,8 +180,8 @@
   }
 }
 
-/* S'affiche uniquement sur les écrans entre 769px et 1200px */
-@media (min-width: 769px) {
+/* S'affiche uniquement sur les écrans entre 650px et 1200px */
+@media (min-width: 660px) and (max-width: 1200px) {
   .micro-alert {
     display: inline-flex !important;
     align-items: center;
