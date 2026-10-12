@@ -113,7 +113,20 @@
   color: var(--text-primary);
 }
 
-/* Met en valeur en violet (#6366f1) si la probabilité de pluie dépasse 50% */
+/* Met en valeur en violet si la probabilité de pluie dépasse 50% */
 #weather-widget .hourly-prob.high-rain {
   color: var(--accent-color);
+}
+
+/* Css pour les écrans mobiles */
+@media (max-width: 768px) {
+  /* Réduit l'espace sous l'en-tête de la carte météo */
+  #weather-widget .card-header {
+    margin-bottom: 0.25rem; 
+  }
+
+  /* Réduction d'espace entre les éléments */
+  .weather-main-info {
+    margin-bottom: 0.5rem; 
+  }
 }
