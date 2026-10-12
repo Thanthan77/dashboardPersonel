@@ -148,7 +148,7 @@
   #weather-widget .weather-metrics-grid,
   #weather-widget .weather-stats-grid {
     padding: 0.5rem !important;
-    margin-bottom: 0.15rem !important;
+    margin-bottom: 0.20rem !important;
   }
 
   .micro-alert {
@@ -162,7 +162,7 @@
     font-size: 0.62rem;      
     padding: 0.2rem 0.4rem;   
     border-radius: 4px;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.15rem;
     line-height: 1.1;
     white-space: nowrap;      
     overflow: hidden;
