@@ -32,6 +32,21 @@ export async function initWeather() {
     const rainProb = data.daily.precipitation_probability_max[0] ?? 0;
     const weatherLabel = getWeatherLabel(data.current.weather_code);
 
+    // --- Logique de la notification intelligente ---
+    let notificationText = "";
+    let notificationIcon = "";
+    if (rainProb >= 50 || data.current.weather_code >= 51) {
+      notificationIcon = Icons.rain;
+      notificationText = " Averses prévues — prends un parapluie.";
+    } else if (temp >= 20 && data.current.weather_code === 0) {
+      notificationIcon = Icons.sun;
+      notificationText = "C'est ensoleillé, profite-en pour sortir !";
+    } else {
+      notificationIcon = Icons.cloud;
+      notificationText = "Temps calme, bonne journée à toi.";
+    }
+
+
     // Heure actuelle au format HH:MM
     const now = new Date();
     const updatedTime = now.toLocaleTimeString('fr-CA', { 
@@ -126,3 +141,4 @@ function renderError(container) {
     </div>
   `;
 }
+
