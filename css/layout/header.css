@@ -54,25 +54,43 @@
   margin-top: 2px;
 }
 
-/* --- Adaptation Responsive Mobile --- */
-@media (max-width: 480px) {
+/* Css pour les écrans mobiles */
+@media (max-width: 768px) {
   .main-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+    margin-bottom: 1rem;
   }
 
-  .header-right {
-    text-align: left;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 0.5rem;
+  .header-left {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .header-badge {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    margin-top: 4px; /* Alignement parfait avec le texte réduit */
+  }
+
+  .header-title-group h1 {
+    font-size: 0.95rem;
+    line-height: 1.2;
+  }
+
+  .header-title-group p {
+    font-size: 0.75rem;
+    margin-top: 2px;
+    line-height: 1.2;
   }
 
   .clock-display {
-    font-size: 1.5rem; /* Légèrement réduit pour éviter les sauts sur petit écran */
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .date-display {
+    font-size: 0.75rem;
+    margin-top: 2px;
+    line-height: 1.2;
   }
 }
