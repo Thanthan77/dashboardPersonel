@@ -26,8 +26,8 @@ function getEventCategory(title) {
   
   const t = title.toLowerCase();
 
-  if (courseCodeRegex.test(title.trim())) {
-    return { name: 'Cours', color: '#6366f1' }; // Violet (Indigo)
+  if (courseCodeRegex.test(title.trim())|| t.includes('stage')) {
+    return { name: 'Etude', color: '#6366f1' }; // Violet (Indigo)
   } else if (t.includes('exam') || t.includes('intra') || t.includes('final') || t.includes('quiz') || t.includes('test')) {
     return { name: 'Examen', color: '#ef4444' }; // Rouge (Alerte)
   } else if (t.includes('lab') || t.includes('tp') || t.includes('projet') || t.includes('atelier')) {
