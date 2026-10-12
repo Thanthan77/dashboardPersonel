@@ -136,4 +136,31 @@
     padding: 0.5rem !important;
     margin-bottom: 0.5rem !important;
   }
+
+  .micro-alert {
+    display: flex !important;
+    align-items: center;
+    gap: 4px;
+    background: rgba(217, 119, 6, 0.15);
+    border-left: 3px solid #f59e0b;
+    color: #fbbf24;
+    font-size: 0.62rem;      
+    padding: 0.2rem 0.4rem;   
+    border-radius: 4px;
+    margin-bottom: 0.4rem;
+    line-height: 1.1;
+    white-space: nowrap;      
+    overflow: hidden;
+    text-overflow: ellipsis;  
+  }
+
+  /* Taille de l'icône SVG dans ce micro-bandeau */
+  .micro-alert .micro-alert-icon svg,
+  .micro-alert .micro-alert-icon .widget-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+    stroke: #fbbf24;
+    fill: none;
+    flex-shrink: 0;
+  }
 }
