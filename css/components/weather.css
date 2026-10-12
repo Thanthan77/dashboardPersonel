@@ -118,6 +118,30 @@
   color: var(--accent-color);
 }
 
+/* Style par défaut pour Desktop */
+.micro-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(217, 119, 6, 0.15);
+  border: none;
+  border-left: 4px solid #f59e0b;
+  color: #fbbf24;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.micro-alert .micro-alert-icon svg,
+.micro-alert .micro-alert-icon .widget-icon {
+  width: 1rem;
+  height: 1rem;
+  stroke: #fbbf24;
+  fill: none;
+  flex-shrink: 0;
+}
+
 /* Css pour les écrans mobiles */
 @media (max-width: 768px) {
   /* Réduit l'espace sous l'en-tête de la carte météo */
@@ -142,6 +166,7 @@
     align-items: center;
     gap: 4px;
     background: rgba(217, 119, 6, 0.15);
+    border: none;
     border-left: 3px solid #f59e0b;
     color: #fbbf24;
     font-size: 0.62rem;      
