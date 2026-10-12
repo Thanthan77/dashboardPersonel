@@ -69,15 +69,18 @@ DashboardPerso/
 │       ├── tasks.css
 │       ├── canadiens.css
 │       └── links.css
-└── js/
-    ├── app.js
-    └── modules/
-        ├── header.js
-        ├── weather.js
-        ├── calendar.js
-        ├── tasks.js
-        ├── canadiens.js
-        └── links.js
+├── design/
+│   ├── Model_Desktop.png
+│   └── Model_Mobile.png
+├── js/
+│   ├── app.js
+│   └── modules/
+│       ├── header.js
+│       ├── weather.js
+│       ├── calendar.js
+│       ├── tasks.js
+│       ├── canadiens.js
+│       └── links.js
 │
 └── README.md
 ```
