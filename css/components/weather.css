@@ -122,7 +122,7 @@
 @media (max-width: 768px) {
   /* Réduit l'espace sous l'en-tête de la carte météo */
   #weather-widget .card-header {
-    margin-bottom: 0.20rem !important;
+    margin-bottom: 0.15rem !important;
   }
 
   /* Rapproche les éléments principaux */

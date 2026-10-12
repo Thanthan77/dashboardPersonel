@@ -85,7 +85,7 @@
 @media (max-width: 768px) {
   /* Réduit l'espace sous le header de la carte */
   #canadiens-widget .card-header {
-    margin-bottom: 0.25rem !important;
+    margin-bottom: 0.20rem !important;
   }
 
   /* Rapproche les logos du haut de la carte */
