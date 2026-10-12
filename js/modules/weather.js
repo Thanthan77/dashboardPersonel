@@ -81,6 +81,11 @@ export async function initWeather() {
 
     // Rendu HTML propre
     weatherCard.innerHTML = `
+     <div class="micro-alert">
+        <span class="micro-alert-icon">${notificationIcon}</span>
+        <span id="notificationIntelligente">${notificationText}</span>
+      </div>
+      
       <div class="card-header">
         <h2 class="card-title">MÉTÉO</h2>
         <span class="card-subtitle">Mis à jour ${updatedTime}</span>
