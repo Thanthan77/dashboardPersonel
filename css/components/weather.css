@@ -120,24 +120,14 @@
 
 /* Style par défaut pour Desktop */
 .micro-alert {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(217, 119, 6, 0.15);
-  border: none;
-  border-left: 4px solid #f59e0b;
-  color: #fbbf24;
-  font-size: 0.85rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
+  display: none
 }
 
 .micro-alert .micro-alert-icon svg,
 .micro-alert .micro-alert-icon .widget-icon {
-  width: 1rem;
-  height: 1rem;
-  stroke: #fbbf24;
+  width: 0;
+  height: 0;
+  stroke: 0;
   fill: none;
   flex-shrink: 0;
 }
