@@ -33,6 +33,12 @@
     grid-column: span 1;
   }
 
+  #agenda-widget,
+  #tasks-widget,
+  #links-widget {
+    display: none !important;
+  }
+
   .dashboard-grid > div,
   .card{
     width: 100% !important;
