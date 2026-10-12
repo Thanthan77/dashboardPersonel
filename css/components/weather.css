@@ -148,7 +148,7 @@
   #weather-widget .weather-metrics-grid,
   #weather-widget .weather-stats-grid {
     padding: 0.5rem !important;
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.20rem !important;
   }
 
   .micro-alert {
