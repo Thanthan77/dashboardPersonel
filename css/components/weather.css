@@ -181,7 +181,7 @@
 }
 
 /* S'affiche uniquement sur les écrans entre 769px et 1200px */
-@media (min-width: 769px) and (max-width: 1200px) {
+@media (min-width: 769px) {
   .micro-alert {
     display: inline-flex !important;
     align-items: center;
@@ -200,7 +200,7 @@
 
   .micro-alert .micro-alert-icon svg,
   .micro-alert .micro-alert-icon .widget-icon {
-    width: 1.1rem;            /* 👈 Icône carrée et bien proportionnelle */
+    width: 1.1rem;            
     height: 1.1rem;
     stroke: var(--accent-color);
     fill: none;

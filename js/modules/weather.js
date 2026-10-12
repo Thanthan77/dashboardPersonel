@@ -36,7 +36,7 @@ export async function initWeather() {
     let notificationText = "";
     let notificationIcon = "";
     if (rainProb >= 50 || data.current.weather_code >= 51) {
-      notificationIcon = Icons.rain;
+      notificationIcon = Icons.cloudRain;
       notificationText = " Averses prévues — prends un parapluie.";
     } else if (temp >= 20 && data.current.weather_code === 0) {
       notificationIcon = Icons.sun;
@@ -73,7 +73,7 @@ export async function initWeather() {
     const hourlyHtml = nextHoursProbability.map(item => `
       <div class="hourly-item">
         <span class="hourly-time">${item.time}</span>
-        <span class="hourly-rain-icon">${Icons.rain}</span>
+        <span class="hourly-rain-icon">${Icons.cloudRain}</span>
         <span class="hourly-prob ${item.prob >= 50 ? 'high-rain' : ''}">${item.prob}%</span>
       </div>
     `).join('');
@@ -85,7 +85,7 @@ export async function initWeather() {
         <span class="micro-alert-icon">${notificationIcon}</span>
         <span id="notificationIntelligente">${notificationText}</span>
       </div>
-      
+
       <div class="card-header">
         <h2 class="card-title">MÉTÉO</h2>
         <span class="card-subtitle">Mis à jour ${updatedTime}</span>
