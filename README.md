@@ -20,7 +20,8 @@ Le projet inclut :
 
 - **Météo en direct** : affichage rapide de la température, du ressenti, des précipitations et du vent pour Montréal.
 - **Gestionnaire de tâches** : ajout, suppression, édition via menu contextuel et calcul de la progression quotidienne avec sauvegarde automatique (`localStorage`).
-- **Agenda intelligent (iCal)** : récupération des événements via un Cloudflare Worker, avec détection automatique et intelligente des catégories (Cours, Examens, Labs, Sport, Perso) grâce à des expressions régulières (Regex) et des badges visuels personnalisés avec bordure violette.
+- **Agenda intelligent (iCal)** : Récupération des événements via Cloudflare Worker et catégorisation automatique par Regex avec badges visuels.
+-  **Notification météo intelligente** : Bandeau d'alerte dynamique s'affichant uniquement sur les écrans mobiles et verticaux.
 - **Prochain match des Canadiens** : suivi du match à venir avec logo des équipes, compte à rebours et détails de la rencontre.
 - **Raccourcis rapides** : grille de liens vers les sites fréquemment utilisés.
 - **Design responsive et adapté au mobile** : mise en page fluide à colonne unique optimisée pour une lecture claire et ergonomique sur smartphone, tout en s'adaptant aux écrans de bureau.
