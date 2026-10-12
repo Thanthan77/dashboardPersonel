@@ -132,7 +132,7 @@
   flex-shrink: 0;
 }
 
-/* Css pour les écrans mobiles */
+/* Css pour les écrans mobiles plus petits */
 @media (max-width: 768px) {
   /* Réduit l'espace sous l'en-tête de la carte météo */
   #weather-widget .card-header {
@@ -174,6 +174,33 @@
   .micro-alert .micro-alert-icon .widget-icon {
     width: 0.75rem;
     height: 0.75rem;
+    stroke: #fbbf24;
+    fill: none;
+    flex-shrink: 0;
+  }
+}
+
+/* S'affiche uniquement sur les écrans entre 769px et 1200px */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .micro-alert {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    background: rgba(217, 119, 6, 0.15);
+    border: none;
+    border-left: 4px solid #f59e0b;
+    color: #fbbf24;
+    font-size: 0.85rem;      
+    padding: 0.5rem 0.75rem; 
+    border-radius: 6px;
+    margin-bottom: 0.75rem;  
+    line-height: 1.3;
+  }
+
+  .micro-alert .micro-alert-icon svg,
+  .micro-alert .micro-alert-icon .widget-icon {
+    width: 1rem;
+    height: 1rem;
     stroke: #fbbf24;
     fill: none;
     flex-shrink: 0;
