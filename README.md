@@ -78,6 +78,9 @@ DashboardPerso/
         ├── tasks.js
         ├── canadiens.js
         └── links.js
+└── design/
+│       ├── Model_Desktop.png
+│       └──Model_Mobile.png
 │
 └── README.md
 ```
