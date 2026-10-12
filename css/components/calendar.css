@@ -112,7 +112,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--accent-color);
-  background: rgba(99, 102, 241, 0.1);
+  background: var(--accent-bg);
   border: 1px solid var(--accent-color); 
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
