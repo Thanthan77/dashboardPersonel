@@ -122,11 +122,18 @@
 @media (max-width: 768px) {
   /* Réduit l'espace sous l'en-tête de la carte météo */
   #weather-widget .card-header {
-    margin-bottom: 0.25rem; 
+    margin-bottom: 0.20rem !important;
   }
 
-  /* Réduction d'espace entre les éléments */
-  .weather-main-info {
-    margin-bottom: 0.5rem; 
+  /* Rapproche les éléments principaux */
+  #weather-widget .weather-main-info {
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* S'assure que les deux noms de classes possibles pour la grille fonctionnent */
+  #weather-widget .weather-metrics-grid,
+  #weather-widget .weather-stats-grid {
+    padding: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
   }
 }
