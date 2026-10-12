@@ -81,3 +81,21 @@
   font-weight: 600;
   margin-top: 0.25rem;
 }
+
+@media (max-width: 768px) {
+  /* Réduit l'espace sous le header de la carte */
+  #canadiens-widget .card-header {
+    margin-bottom: 0.25rem !important;
+  }
+
+  /* Rapproche les logos du haut de la carte */
+  #canadiens-widget .match-versus-container {
+    margin: 0.5rem 0 !important;
+  }
+
+  /* Réduit légèrement la taille des logos sur mobile pour gagner en compacité */
+  #canadiens-widget .team-logo {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
