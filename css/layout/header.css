@@ -94,3 +94,13 @@
     line-height: 1.2;
   }
 }
+
+/* Ajustement de l'en-tête pour les écrans PC peu hauts */
+@media (min-width: 769px) and (max-height: 900px) {
+  .main-header {
+    margin-bottom: 0.75rem !important;
+  }
+  .clock-display {
+    font-size: 1.5rem !important;
+  }
+}
